@@ -4,4 +4,5 @@ Output:
 ![](https://github.com/shubh-sohi/Genomic_sequence_representation/blob/master/SC1.png)
 **Run instrunctions**
 * make
-* ./cgr Scale <"input sequence">output.pbm (Scale is an power of 2 integer in between 64 and 4096
+* ./cgr Scale <"input sequence">output.pbm (Scale is an power of 2 integer in between 64 and 4096  
+[Have to have lnetpbm library in your system.](http://netpbm.sourceforge.net/getting_netpbm.php)
