@@ -1,0 +1,42 @@
+Name - Shubhkarman Sohi
+Student Number - 11219687
+NSID - sss669
+
+run logs:
+
+1)
+
+making of the output files~
+
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> ./cgr 2048 < HUMHBB.txt > HUMHBB_out.pbm
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> ./cgr 2048 < HUMALBGC.txt > HUMALBGC_out.pbm
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> ./cgr 2048 < HUMRASH.txt > HUMRASH_out.pbm
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> ./cgr 2048 < HIVPV22.txt > HIVPV22_out.pbm
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> ./cgr 2048 < SLMMYHC.txt > DDIMYHC_out.pbm
+ 
+diff the out files from actual files~
+
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> diff HUMHBB_out.pbm HUMHBB_actual.pbm 
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> diff HUMALBGC_out.pbm HUMALBGC_actual.pbm 
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> diff HUMRASH_out.pbm HUMRASH_actual.pbm 
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> diff HIVPV22_out.pbm HIVPV22_actual.pbm 
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> diff DDIMYHC_out.pbm DDIMYHC_actual.pbm 
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> 
+
+2)
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> ./cgr 64 <<<"ACGT" > acgt.pbm 
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> 
+
+The output file is submitted in submission.
+
+3)
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> ./cgr 154 <<<"ACGT" > acgt.pbm
+Scale must be a power of 2
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> ./cgr 54 <<<"ACGT" > acgt.pbm
+Scale must be a power of 2
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> ./cgr 16 <<<"ACGT" > acgt.pbm
+Scale too small
+sss669@s360-drone11:~/214assignment04/Question1/Submission/temp> ./cgr 16666 <<<"ACGT" > acgt.pbm
+Scale too large
+
+

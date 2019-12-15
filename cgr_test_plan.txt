@@ -1,0 +1,12 @@
+Name - Shubhkarman Sohi
+Student Number - 11219687
+NSID - sss669
+
+test plan:
+ 
+1)Firstly testing is done for all the provided files in the question. The files are saved in a text 		file, then run through the program, Saves the output in filename_out.pbm. Finally the output is 	compared to the actual output obtained from the ques. The difference is computed using diff.
+
+2) this is a very basic test with input "ACGT" for proving the dots agr getting to their assigned 		corner. This test case also covers that part where we test for upper cases inputs.
+
+3) Testing for invalid Scale values. Thus when scale is too small, scale is too big ans scale is not a 		power of 2
+

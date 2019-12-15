@@ -1,0 +1,52 @@
+﻿Name - Shubhkarman Sohi
+Student Number - 11219687
+NSID - sss669
+
+-->EXTERNAL DOCUMENTATION FOR THE CHAOS GAME FOR GENETIC SEQUENCE PROGRAM<--
+
+The is documentation divided into points which represent functions and how they work using each other.
+Any instance of Numerator or Denominator will typed as N and D
+
+We define 3 global constrains namely MIN_SCALE to be 64 to indicate the possible min valie Scale can be, MIN_SCALE to be 4028 o indicate the possible max valie Scale can be, and NUM_NTIDES to be 4 so to tell the we can only have 4 types of inputs namely A,C,G,T
+
+Further more we have defined 3 structures whith each having significant functionality:
+    • coord_t – this struct is used to stores two variables of type uint64_t such as, one variable is the N and the other variable is the D of a point. During runtime 		these variable tend to become very large values thus are defined to be of type uint64_t.
+
+    • point_t – this struct stores two variables which are points of a coordinates . Each of this point is defined to be of type coord_d thus each of these points 		have a N and a D stored seperately
+
+    • ntide_t – this struct defines 4 variables namely A,C,G,T each of types point_t thus each having 2 coordinates and forther each having a N and D value.
+
+A global variable of Scale of type int is defined which is the Scale of our graph. Scale N will produce a NxN graph This value has to be a power of two and can only be in between 64 and 4028 inclusive.
+
+Another global variable Plot is defined to be pointer to pointer to bit. We will allocate this variable memory in main() and use it as a 2d array throughout the program.
+ 
+Now the following are function definations :
+
+is_pow_of_2:
+	The code was taken from https://www.exploringbinary.com/ten-ways-to-check-if-an-integer-is-a-power-of-two-in-c/ .
+	The first defined function is is_power_of_2 of type _Bool. The function takes one argument, an 	int value and returns true if the argument is a power of 2 and 			false otherwise. It does so by 	binary shifting the variable until it is one.
+	
+reduce_coord:
+	This function takes one argument old_coord of type coord_t. The function checks if the D of 	old_coord is greater than 2^63. If so is true it divedes both 		the N and the D of old_coord by 2 	and then returns the updated old_coord.  
+	The division is done using binary shifht 1 to right which is equvivalent as dividinf by 2. 1<<63 	is also equal to 2^63.
+	If the argument is smaller than 2^63 it simply returns the argument.
+
+reduce_point:
+	This function takes and input old_point of type point_t. The function passes the seperately x and 	y values of old_coord, which are of type coord_t to 		reduce_coord and then reduce_coord does 	its work and returs a value of type coord_t. The updated value is changed in the old_point 	coordinates 		namely x 	and y and the updated point is returned.
+
+output_plot:
+	This function has no argument and returns nothing but does a significant bit of work. The 	function uses the Scale value to run a for loops with 		variables (representing columns).  Since the 	Plot has values from (0,0) till (Scale,Scale) we start out loops from 1 and run them till Scale+1 		plotting PBM_BLACK bit on every point that needs to be plotted.
+
+scale_coord:
+	This function taked an argument coord of type coord_t and returns a unsigned scled value. The 	value is scales such that it is always in between 0 and 63 as 		so we can go to the recpective 	column and row and make a change in the Plot 2d arrya. Scale always has to be a int between 	16 and 64. Keeping the in mind 		we know that the formulation of midpoint requires the D to 	multiplied by 2 in every iteration. Taking advantage of that fact we can compute this scale. 		The 	value we have to compute is Scale*(N/D). We always want to work with integers thus we keep 	a check to make sue that Sacle is always  greater than 		D, otherwise we will get a float result and 	variables will assigne it value of zero.
+	To addresss that problem if Scale is smaller than D, we computer D/Scale which will be an 	integer value greater than or equal to 1. Then we divide the 		above result from N and get the 	desired unsogned. The computed unsigned is returned. 
+
+plot_point:
+	This function takes an argument of type point, return nothing but makes the value 	corresponding to that point in Plot to PBM_BLACK instead of the 	PBM_WHITE.  Firstly it 	defines 2 variables of type uint64_t namely row and colm. Using the scale_coord function we 	get the row by passing it argument of 		point y and compute colm by passing point x to 	scale_coord. Now both the variables have a int value stored in them which is greater than 0 and 		smaller than Scale. We could have just use type int for these variables but it just seemd a little 	streamlined to use uint64_t. Using row and 			colm we make Plot[row][colm] = PBM_BLACK.
+
+determine_midpoint:
+	this function takes argument 2 points namely ptn1 and ptn2 and return one point that is the 	midpoint of those two points. The 2nd input point will always 		be the char A,C,G or T this we are 	known of their coordinates which are (0,0), (0,1),(1,1) and (1,0) respectively. By taking the 	advante of this we can 		compute the mispoint of 2 points using the formula midpoint.x =  (ptn1.x 	+ ptn2.x)/2 and midpoint.y = (ptn1.y +  pnt2.y)/2.
+	Using if and else statements we conclude if ptn2 (which always will be A,C,G,T ) x and y 	values are 0 or 1. Depending on the result we compute the 		midpoint.x and midpoint.x.
+	for example if ptn2.x is 0 and ptn2.y is 1 and our ptn2 is (1/2,1/2). midpoint.x will be computed 	N and D seperated, N will me ptn1.x N and D will be 		ptn1.x.D * 2. midpoint.y N will be (ptn1.y 	N + ptn1.yD) and D will be ptn1.y D * 2. in the while loop saving these values in temp coord_t 	and finally 			putting the two temps in one midpoint of type point_t which is returned.
+
+
